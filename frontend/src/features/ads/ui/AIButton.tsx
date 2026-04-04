@@ -6,13 +6,15 @@ interface Props {
   label?: string;
   loading?: boolean;
   isReady?: boolean;
+  onClick?: () => void
 }
 
-export default function AIButton({ label, loading = false, isReady = false }: Props) {
+export default function AIButton({ label, loading = false, isReady = false, onClick }: Props) {
   return (
     <Button
       size="small"
       disabled={loading}
+      onClick={onClick}
       startIcon={
         loading ? (
           <CircularProgress size={16} sx={{ color: "#FFA940" }} />

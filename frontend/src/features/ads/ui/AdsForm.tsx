@@ -2,7 +2,6 @@ import { useForm, Controller, useWatch } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { InputField } from "@/shared/ui/form-fields/ui/InputField";
 import { TextareaField } from "@/shared/ui/form-fields/ui/TextareaField";
-import AITooltipButton from "./AITooltipButton";
 import type { AdFormData } from "../types";
 import { adFormSchema } from "../model/schema";
 import { useNavigate, useParams } from "react-router-dom";
@@ -20,6 +19,8 @@ import AutoFields from "./auto/AutoFields";
 import EstateFields from "./estate/EstateFields";
 import formatFromAdFormDataToAdData from "@/entities/ads/lib/formatFromFormToRequest.ts";
 import Notification from "@/shared/ui/Notification";
+import AITooltipButtonDescription from "./AITooltipButtonDescription";
+import AITooltipButtonPrice from "./AITooltipButtonPrice";
 
 interface Props {
   item: ResponseAd;
@@ -37,6 +38,8 @@ export default function AdsForm({ item }: Props) {
     handleSubmit,
     formState: { errors },
     reset,
+    getValues,
+    setValue,
   } = useForm<AdFormData>({
     resolver: zodResolver(adFormSchema),
     defaultValues: setDataAdFormData(item),
@@ -141,7 +144,12 @@ export default function AdsForm({ item }: Props) {
               />
             </div>
             <div className="mt-8">
-              <AITooltipButton label="Узнать рыночную цену" />
+              <AITooltipButtonPrice
+                getFormData={() => getValues()}
+                handleApplyPrice={(text: string) =>
+                  setValue("price", text, { shouldValidate: true, shouldDirty: true })
+                }
+              />
             </div>
           </div>
           <hr className="border-t border-[#F0F0F0] my-4.5" />
@@ -171,7 +179,12 @@ export default function AdsForm({ item }: Props) {
                 />
               )}
             />
-            <AITooltipButton label="Улучшить описание" />
+            <AITooltipButtonDescription
+              getFormData={() => getValues()}
+              handleApplyDescription={(text: string) =>
+                setValue("description", text, { shouldValidate: true, shouldDirty: true })
+              }
+            />
           </div>
         </form>
       </div>

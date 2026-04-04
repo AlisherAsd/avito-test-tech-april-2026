@@ -1,6 +1,10 @@
 import { Button } from "@mui/material";
 
-export default function ErrorAIContentTooltip() {
+interface Props {
+  handleClick: () => void
+}
+
+export default function ErrorAIContentTooltip({ handleClick }: Props) {
   return (
     <div className="min-w-80.5 p-2">
       <p className="font-medium mb-2 text-[#C00F0C]">Произошла ошибка при запросе к AI</p>
@@ -9,6 +13,7 @@ export default function ErrorAIContentTooltip() {
         <Button
           size="small"
           variant="contained"
+          onClick={handleClick}
           sx={{
             textTransform: "none",
             backgroundColor: "#FCB3AD",
