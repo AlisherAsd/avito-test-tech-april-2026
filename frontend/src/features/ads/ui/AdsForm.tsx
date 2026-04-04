@@ -76,13 +76,20 @@ export default function AdsForm({ item }: Props) {
 
     try {
       await dispatch(editAd({ id, data: formatFromAdFormDataToAdData(data) })).unwrap();
-
       setOpenSuccesNotification(true);
       navigate(APP_ROUTES.ADS_DETAIL(id));
     } catch (e) {
       console.error(e);
       setOpenErrorNotification(true);
     }
+  }
+
+  function applyAiDescription(text: string) {
+    setValue("description", text, { shouldValidate: true, shouldDirty: true });
+  }
+
+  function applyAiPrice(text: string) {
+    setValue("price", text, { shouldValidate: true, shouldDirty: true });
   }
 
   return (
@@ -146,9 +153,7 @@ export default function AdsForm({ item }: Props) {
             <div className="mt-8">
               <AITooltipButtonPrice
                 getFormData={() => getValues()}
-                handleApplyPrice={(text: string) =>
-                  setValue("price", text, { shouldValidate: true, shouldDirty: true })
-                }
+                handleApplyPrice={applyAiPrice}
               />
             </div>
           </div>
@@ -181,9 +186,7 @@ export default function AdsForm({ item }: Props) {
             />
             <AITooltipButtonDescription
               getFormData={() => getValues()}
-              handleApplyDescription={(text: string) =>
-                setValue("description", text, { shouldValidate: true, shouldDirty: true })
-              }
+              handleApplyDescription={applyAiDescription}
             />
           </div>
         </form>

@@ -57,7 +57,7 @@ export default function AdsEditPage() {
         <h2 className="text-2xl font-medium leading-tight tracking-tight">
           Редактирование объявления
         </h2>
-        <div className="flex justify-between">
+        <div className="flex justify-between gap-5">
           <AdsForm item={item} />
           <AIChat />
         </div>

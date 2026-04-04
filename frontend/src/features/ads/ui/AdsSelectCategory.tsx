@@ -19,6 +19,7 @@ export default function AdsSelectCategory({
     <SelectField<ItemCategory>
       label="Категория"
       textStyle="default"
+      defaultValue='auto'
       value={value}
       handleChange={handleChange}
       options={OPTIONS}

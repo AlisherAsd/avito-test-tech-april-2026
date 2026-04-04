@@ -40,3 +40,11 @@ export const fetchGeneratePrice = createAsyncThunk(
     return response;
   }
 );
+
+export const fetchGenerateAnswer = createAsyncThunk(
+  "ai/fetchGenerateAnswer",
+  async ({ text }: { text: string }) => {
+    const response = await aiApi.generateText(text);
+    return response;
+  }
+);

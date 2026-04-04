@@ -12,7 +12,20 @@ export interface StatePrice {
   status: "pending" | "success" | "error" | null;
   error: string | null;
 }
+
+export interface Message {
+  message: string;
+  from: "user" | "ai";
+}
+
+export interface StateChat {
+  chat: Message[];
+  loading: boolean;
+  status: "pending" | "success" | "error" | null;
+  error: string | null;
+}
 export interface AiState {
   description: StateDescription;
   price: StatePrice;
+  chat: StateChat;
 }

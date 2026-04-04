@@ -3,7 +3,7 @@ import axios from "axios";
 const OPENROUTER_API_KEY = import.meta.env.VITE_OPENROUTER_API_KEY;
 
 export const aiApi = {
-  generateText: async (text: string, prompt: string) => {
+  generateText: async (text: string, prompt?: string) => {
     const response = await axios.post(
       "https://openrouter.ai/api/v1/chat/completions",
       {
