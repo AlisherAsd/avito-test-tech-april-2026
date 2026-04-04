@@ -7,7 +7,6 @@ RUN npm install
 
 COPY . .
 
-# URL API с точки зрения браузера пользователя
 ARG VITE_BASE_API_URL=http://localhost:8080
 ARG VITE_OPENROUTER_API_KEY=
 ENV VITE_BASE_API_URL=$VITE_BASE_API_URL
