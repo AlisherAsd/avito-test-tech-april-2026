@@ -1,15 +1,9 @@
+import AdsSortSelect from "@/features/ads/ui/AdsSortSelect";
 import type { SortColumn, SortDirection } from "@/shared/api/types";
 import AppstoreIcon from "@/shared/assets/AppstoreIcon";
 import SearchIcon from "@/shared/assets/SearchIcon";
 import UnorderedListIcon from "@/shared/assets/UnorderedListIcon";
-import {
-  debounce,
-  FormControl,
-  MenuItem,
-  Select,
-  TextField,
-  type SelectChangeEvent,
-} from "@mui/material";
+import { debounce, FormControl, TextField, type SelectChangeEvent } from "@mui/material";
 import { useCallback, useState } from "react";
 
 interface Props {
@@ -20,13 +14,6 @@ interface Props {
   query: string;
   state: "grid" | "list";
 }
-
-const sortOptions: { value: string; label: string }[] = [
-  { value: "createdAt|desc", label: "По новизне (сначала старые)" },
-  { value: "createdAt|asc", label: "По новизне (сначала новые)" },
-  { value: "title|asc", label: "По названию (А - Я)" },
-  { value: "title|desc", label: "По названию (Я - А)" },
-];
 
 export default function AdsSearchHeader({
   setSelectedTableView,
@@ -109,13 +96,7 @@ export default function AdsSearchHeader({
           </button>
         </div>
         <FormControl size="small" sx={{ width: 270 }}>
-          <Select onChange={handleSortChange} defaultValue="createdAt|desc">
-            {sortOptions.map((option) => (
-              <MenuItem key={option.value} value={option.value}>
-                {option.label}
-              </MenuItem>
-            ))}
-          </Select>
+          <AdsSortSelect handleSortChange={handleSortChange} />
         </FormControl>
       </div>
     </div>
